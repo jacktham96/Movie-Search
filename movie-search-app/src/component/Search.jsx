@@ -1,25 +1,25 @@
 import React, {useState} from 'react'
 
 
-const Search = ({onSearchChange}) => {
-    const [searchText , setSearchText] = useState('');
+const Search = ({onSearch}) => {
+    const [query , setQuery] = useState('');
 
     const handleSearch = (event) => {
         event.preventDefault(); //防止頁面刷新
-        onSearchChange(searchText)  //執行搜索操作
+        onSearch(query)  //執行搜索操作
     }
 
     return(
-        <div className='searchContainer w-[1240px] max-w-full flex justify-center relative' onSubmit={handleSearch}>
+        <form  onSubmit={handleSearch} className='searchContainer w-[1240px] max-w-full flex justify-center relative'>
             <input 
                 type="text" 
-                value={searchText}
-                onChange={(event)=>setSearchText(event.target.value)}
+                value={query}
+                onChange={(event)=>setQuery(event.target.value)}
                 placeholder="Enter a movie" 
                 className=' p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200'
             />
                                
-                <button className='absolute top-[25%] right-[43%] translate-x-2 aspect-square cursor-pointer border-none'>
+                <button type='submit' className='absolute top-[25%] right-[43%] translate-x-2 aspect-square cursor-pointer border-none'>
                   <svg
                     width="24"
                     height="24"
@@ -33,7 +33,7 @@ const Search = ({onSearchChange}) => {
                   </svg>
                 </button>      
 
-        </div>
+        </form>
     )
 }
 
