@@ -1,17 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaStar, FaRegStar } from 'react-icons/fa';
 
-const MovieCard = ({movie}) => {
+const MovieCard = ({movie, AddToFav }) => {
+    const [isFav , setIsFav] = useState(false)
+
     const fallbackImage = 'https://via.placeholder.com/150'; // Add a fallback image URL
+    
+    let roundedVoteAverage = Number((movie.vote_average).toFixed(1))
+
+    const handleAddtoFav = () => {
+        setIsFav(!isFav)
+        AddToFav(movie)
+    }
 
     return (
-        <div className="flex flex-col items-center p-4">
-        <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : fallbackImage}
-        alt={movie.title} 
-        className="mb-2" 
-        />
-        <h2 className="text-lg font-bold">{movie.title}</h2>
-        <p className="text-sm">{movie.overview}</p>
-      </div>
+        <div className="content-start p-4">
+            <div className="image">
+                <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : fallbackImage}
+                alt={movie.title} 
+                className="mb-2" 
+                />
+            </div>
+
+            <div className="content flex justify-between px-2">
+                <div>
+                    <h2 className="text-2xl font-bold">{movie.title}</h2>
+                    <span className="text-sm">{movie.release_date}</span>
+                </div>
+                <div>
+                    <h2 className="text-xl text-yellow-500 font-bold">{roundedVoteAverage}</h2>
+                </div>
+
+            </div>
+
+            <button 
+                className={`m-2 text-yellow-500 mt-2 ${isFav ? 'text-yellow-400' : ''}`}
+                onClick={handleAddtoFav}
+            >
+            {isFav ? <FaStar size={24} /> : <FaRegStar size={24}/>}
+            </button>
+
+
+        </div>
     )
 }
 

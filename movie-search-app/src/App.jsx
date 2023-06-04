@@ -36,14 +36,14 @@ const App = () => {
   }, []);
 
   return (
-    <div className="max-w-[1240px] shadow-xl h-[400px] mx-auto p-3">
+    <div className="max-w-[1240px] h-[400px] mx-auto p-3">
       <h1 className="flex justify-center text-2xl font-bold mb-4">Movie Search</h1>
       <Search onSearch={searchMovie}  />
 
       {isSearchEmpty ? (
         <div className="flex justify-center mt-4 text-red-500">No movies found</div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
 
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
