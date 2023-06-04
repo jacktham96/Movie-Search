@@ -2,7 +2,6 @@ import {React , useState, useEffect } from 'react';
 import './index.css';
 import Search from './component/Search';
 import MovieCard from './component/MovieCard';
-import { log } from 'algolia-places-react';
 
 
 const apiKey = 'a380131daa15066bcabd72000b201374';
