@@ -15,11 +15,19 @@ const MovieCard = ({movie, AddToFav }) => {
 
     return (
         <div className="content-start p-4">
-            <div className="image">
+            <div className="image relative">
                 <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : fallbackImage}
                 alt={movie.title} 
                 className="mb-2" 
                 />
+                
+                <button 
+                    className={`absolute top-0 right-0 m-2 text-yellow-500 mt-2 ${isFav ? 'text-yellow-400' : ''}`}
+                    onClick={handleAddtoFav}
+                >
+                {isFav ? <FaStar size={30} /> : <FaRegStar size={30}/>}
+                </button>
+
             </div>
 
             <div className="content flex justify-between px-2">
@@ -33,12 +41,7 @@ const MovieCard = ({movie, AddToFav }) => {
 
             </div>
 
-            <button 
-                className={`m-2 text-yellow-500 mt-2 ${isFav ? 'text-yellow-400' : ''}`}
-                onClick={handleAddtoFav}
-            >
-            {isFav ? <FaStar size={24} /> : <FaRegStar size={24}/>}
-            </button>
+
 
 
         </div>

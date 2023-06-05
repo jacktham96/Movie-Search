@@ -5,12 +5,12 @@ const Search = ({onSearch}) => {
     const [query , setQuery] = useState('');
 
     const handleSearch = (event) => {
-        event.preventDefault(); //防止頁面刷新
+        event.preventDefault(); //防止頁面刷新z
         onSearch(query)  //執行搜索操作
     }
 
     return(
-        <form  onSubmit={handleSearch} className='searchContainer w-[1240px] max-w-full flex justify-center relative'>
+        <form  onSubmit={handleSearch} className='searchContainer relative'>
             <input 
                 type="text" 
                 value={query}
@@ -19,7 +19,7 @@ const Search = ({onSearch}) => {
                 className=' p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200'
             />
                                
-                <button type='submit' className='absolute top-[25%] right-[43%] translate-x-2 aspect-square cursor-pointer border-none'>
+                <button type='submit' className='absolute top-[20%] right-[10%] translate-x-2 aspect-square cursor-pointer border-none'>
                   <svg
                     width="24"
                     height="24"
