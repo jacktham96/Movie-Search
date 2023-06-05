@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar, FaRegStar } from 'react-icons/fa';
 
 const MovieCard = ({movie, AddToFav }) => {
@@ -10,8 +10,22 @@ const MovieCard = ({movie, AddToFav }) => {
 
     const handleAddtoFav = () => {
         setIsFav(!isFav)
-        AddToFav(movie)
+        AddToFav(movie.id)
+        saveToLocalStorage(movie.id)
     }
+
+    const saveToLocalStorage = (movieID) => {
+        const favorite = JSON.parse(localStorage.getItem('favorites')) || []
+        const updateFavorites = isFav 
+            ? favorite.filter((favItemId) => favItemId !== movieID)
+            :[...favorite, movieID]
+        localStorage.setItem('favorites', JSON.stringify(updateFavorites))
+    }
+
+    useEffect(() => {
+        const favorite = JSON.parse(localStorage.getItem('favorites')) || []
+        setIsFav(favorite.includes(movie.id))
+    }, [movie.id])
 
     return (
         <div className="content-start p-4">
@@ -22,10 +36,11 @@ const MovieCard = ({movie, AddToFav }) => {
                 />
                 
                 <button 
-                    className={`absolute top-0 right-0 m-2 text-yellow-500 mt-2 ${isFav ? 'text-yellow-400' : ''}`}
+                    className={`favbtn absolute top-0 right-0 m-2 text-yellow-500 mt-2 ${isFav ? 'text-yellow-400' : ''}`}
                     onClick={handleAddtoFav}
                 >
-                {isFav ? <FaStar size={30} /> : <FaRegStar size={30}/>}
+                {isFav ? <FaStar size={30} /> : <FaRegStar size={30} />}
+
                 </button>
 
             </div>

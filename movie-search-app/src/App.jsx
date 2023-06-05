@@ -13,6 +13,7 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [isSearchEmpty, setIsSearchEmpty] = useState(false);
   const [isFav , setIsFav] = useState([])
+  
 
 
   const searchMovie = async (query) => {
@@ -68,13 +69,15 @@ const App = () => {
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
                 {movies.map((movie) => (
-                  <MovieCard key={movie.id} movie={movie} />
+                  <MovieCard key={movie.id} movie={movie} AddToFav={handleAddtoFav}/>
                 ))}
               </div>
             )}
             
           </>
         }/>
+          <Route path='/favorite' element={<FavoritePage isFav={isFav}/>} 
+        />
       </Routes>
 
       </div>
