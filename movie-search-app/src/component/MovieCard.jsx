@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaStar, FaRegStar } from 'react-icons/fa';
 
-const MovieCard = ({movie, AddToFav }) => {
+const MovieCard = ({movie}) => {
     const [isFav , setIsFav] = useState(false)
 
     const fallbackImage = 'https://via.placeholder.com/150'; // Add a fallback image URL
@@ -10,15 +10,17 @@ const MovieCard = ({movie, AddToFav }) => {
 
     const handleAddtoFav = () => {
         setIsFav(!isFav)
-        AddToFav(movie.id)
         saveToLocalStorage(movie.id)
     }
 
     const saveToLocalStorage = (movieID) => {
         const favorite = JSON.parse(localStorage.getItem('favorites')) || []
-        const updateFavorites = isFav 
-            ? favorite.filter((favItemId) => favItemId !== movieID)
-            :[...favorite, movieID]
+        let updateFavorites = []
+            if (isFav) {
+                updateFavorites = favorite.filter((favItemId) => favItemId !== movieID)
+            } else {
+                updateFavorites = [...favorite, movieID]
+            }
         localStorage.setItem('favorites', JSON.stringify(updateFavorites))
     }
 
