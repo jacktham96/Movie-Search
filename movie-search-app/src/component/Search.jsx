@@ -15,7 +15,7 @@ const Search = ({onSearch}) => {
                 type="text" 
                 value={query}
                 onChange={(event)=>setQuery(event.target.value)}
-                placeholder="Enter a movie" 
+                placeholder="Search for movies" 
                 className=' p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200'
             />
                                

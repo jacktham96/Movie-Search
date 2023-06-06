@@ -15,6 +15,25 @@ const App = () => {
   const [isFav , setIsFav] = useState([])
   
 
+  const fetchTrendingMovie = async () => {
+    try {
+      const response = await fetch (
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`
+      )
+      const data = await response.json()
+      if (data.results.length === 0) {
+        setIsSearchEmpty(true)
+      } else {
+        setIsSearchEmpty(false)
+        setMovies(data.results);
+        console.log(data);
+      }
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
 
   const searchMovie = async (query) => {
     try {
@@ -37,7 +56,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    searchMovie('Batman');
+    fetchTrendingMovie();
   }, []);
 
 
@@ -48,6 +67,7 @@ const App = () => {
 
   return (
     <Router>
+      
       <div className="max-w-[1240px] h-[400px] mx-auto p-3">
       <h1 className="flex justify-center text-2xl font-bold mb-4">Movie Search</h1>      
         
