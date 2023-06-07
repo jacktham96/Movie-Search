@@ -24,3 +24,16 @@ body {
   background: #e2e8f0;
 
 }
+
+.pagination-number:hover {
+  background-color: #DDD;
+  cursor: pointer;
+}
+
+.pagination-number.active {
+  background-color: #0096FF;
+  color: #FFFFFF;
+  border: 2px solid black;
+  border-width: 2px;
+  font-weight: bold;
+}

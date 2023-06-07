@@ -45,7 +45,7 @@ const Pagination = ({page , totalPages , onPageChange}) => {
         return pageNumbers.map((pageNumber) => (
           <button
             key={pageNumber}
-            className={`pagination-number ${pageNumber === page ? 'active' : ''}`}
+            className={`px-3 py-1 border-2 border-solid	 pagination-number ${pageNumber === page ? 'active' : ''}`}
             onClick={() => handlePageChange(pageNumber)}
           >
             {pageNumber}
@@ -54,25 +54,29 @@ const Pagination = ({page , totalPages , onPageChange}) => {
       };
 
     return(
-        <div className="flex justify-center mt-4">
-        <button
-          className="px-4 py-2 mr-2 bg-gray-300"
-          onClick={handlePrevPage}
-          disabled={page === 1}
-        >
-          Previous Page
-        </button>
-        <div className="flex items-center gap-3 mx-2"> 
-            {renderPageNumbers()}
+        <div className="flex items-center justify-center gap-4 py-10">
+            <button
+            className="flex item-center p-2 rounded-lg bg-slate-300"
+            onClick={handlePrevPage}
+            disabled={page === 1}
+            >
+            <h2 className="">Previous</h2>
+            </button>
+
+            <div className="flex items-center gap-3 mx-2"> 
+                {renderPageNumbers()}
+            </div>
+
+
+            <button
+              className="flex item-center p-2 rounded-lg bg-slate-300"
+              onClick={handleNextPage}
+              disabled={page === totalPages}
+            >
+              <h2 className="">Next</h2>
+            </button>
         </div>
-        <button
-          className="px-4 py-2 ml-2 bg-gray-300"
-          onClick={handleNextPage}
-          disabled={page === totalPages}
-        >
-          Next Page
-        </button>
-      </div>
+
     )
 
 }
